@@ -1,0 +1,16 @@
+server:
+  port: 8080
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    driverClassName: org.postgresqlDriver
+    url: jdbc:postgresql://localhost:5432/betca
+    username: postgres
+    password: postgres
+
+miw:
+  jwt:
+    secret: secret to dev
