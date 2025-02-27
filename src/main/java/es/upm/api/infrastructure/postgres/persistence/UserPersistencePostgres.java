@@ -32,7 +32,7 @@ public class UserPersistencePostgres implements UserPersistence {
     public Stream<User> findByMobileAndFirstNameAndFamilyNameAndEmailAndDniContainingNullSafe
             (String mobile, String firstName, String familyName, String email, String dni, List<Role> roles) {
         return this.userRepository.findByMobileAndFirstNameAndFamilyNameAndEmailAndDniContainingNullSafe
-                (mobile, firstName, familyName, email, dni, roles).stream()
+                        (mobile, firstName, familyName, email, dni, roles).stream()
                 .map(UserEntity::toUser);
     }
 

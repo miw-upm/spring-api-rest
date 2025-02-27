@@ -1,7 +1,7 @@
 # logging
 logging:
   level:
-    es.upm.miw: DEBUG
+    es.upm: DEBUG
 
 # H2 Embedded
 spring:

@@ -20,7 +20,7 @@ info:
 logging:
   level:
     root: WARN
-    es.upm.miw: DEBUG
+    es.upm: DEBUG
 
 management:
   endpoints:
