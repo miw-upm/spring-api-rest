@@ -2,6 +2,7 @@ package es.upm.api.functionaltests;
 
 
 import es.upm.api.infrastructure.resources.SystemResource;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -20,9 +21,16 @@ class SystemResourceFunctionalTest {
     @Autowired
     private TestRestTemplate restTemplate;
 
+    private String baseUrl;
+
+    @BeforeEach
+    void setup() {
+        this.baseUrl = "http://localhost:" + port;
+    }
+
     @Test
     void testReadBadge() {
-        String url = "http://localhost:" + port + SystemResource.VERSION_BADGE;
+        String url = this.baseUrl + SystemResource.VERSION_BADGE;
         ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
 
         assertThat(response.getStatusCode()).isEqualTo(OK);
@@ -34,8 +42,7 @@ class SystemResourceFunctionalTest {
 
     @Test
     void testReadInfo() {
-        String url = "http://localhost:" + port + "/";
-        ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+        ResponseEntity<String> response = restTemplate.getForEntity(this.baseUrl, String.class);
 
         assertThat(response.getStatusCode()).isEqualTo(OK);
         String body = response.getBody();

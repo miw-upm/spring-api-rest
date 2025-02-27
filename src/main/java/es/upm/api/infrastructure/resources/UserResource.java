@@ -1,7 +1,6 @@
 package es.upm.api.infrastructure.resources;
 
 
-import es.upm.api.domain.exceptions.BadRequestException;
 import es.upm.api.domain.model.Role;
 import es.upm.api.domain.model.User;
 import es.upm.api.domain.services.UserService;
@@ -46,11 +45,9 @@ public class UserResource {
 
     @SecurityRequirement(name = "bearerAuth")
     @PostMapping
-    public void createUser(@Valid @RequestBody User creationUser, @AuthenticationPrincipal org.springframework.security.core.userdetails.User activeUser) {
-        this.userService.createUser(creationUser,
-                Role.of(activeUser.getAuthorities().stream().findFirst()
-                        .orElseThrow(() -> new BadRequestException("Inexperado. Debiera tener un Rol esta petición"))
-                        .getAuthority()));
+    public void createUser(@Valid @RequestBody User creationUser) {
+        creationUser.doDefault();
+        this.userService.createUser(creationUser, this.extractRoleClaims());
     }
 
     @SecurityRequirement(name = "bearerAuth")

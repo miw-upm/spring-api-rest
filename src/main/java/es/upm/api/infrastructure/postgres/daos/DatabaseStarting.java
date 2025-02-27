@@ -26,7 +26,7 @@ public class DatabaseStarting {
         this.initialize();
     }
 
-    void initialize() {
+    public void initialize() {
         if (this.userRepository.findByRoleIn(List.of(Role.ADMIN)).isEmpty()) {
             UserEntity user = UserEntity.builder().mobile(MOBILE).firstName(SUPER_USER)
                     .password(new BCryptPasswordEncoder().encode(PASSWORD))
