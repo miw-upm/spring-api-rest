@@ -18,7 +18,6 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class User {
     @NotNull
     @NotBlank
@@ -47,7 +46,6 @@ public class User {
             this.active = true;
         }
     }
-
 
     public User ofMobileFirstName() {
         return User.builder().mobile(this.getMobile()).firstName(this.getFirstName()).build();
